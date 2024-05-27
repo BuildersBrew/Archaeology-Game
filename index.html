@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Archaeology Project</title>
+      <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>
+
+
+      <link rel="stylesheet" href="Template/style.css" />
+      
+   </head>
+   <body class="Dark">
+      <!-- Ambiens VR Multiplatform WebGL Template v 1.3-->
+      <!-- Unity Container -->
+      <div id="main-container" class="fill-window">
+
+         <div id="unity-container">
+            <canvas id="unity-canvas"></canvas>
+            <div id="toggle_fullscreen" class="button floatbottomLeft fullscreenON" > <span class="imgbutton"></span> </div>
+         </div>
+
+         <!-- This is a simple progress bar -->
+         <div id="loader" class="loader">
+            <div class="container">
+               <div class="center">
+                  <img src="Template/logo.png" class="logo" />
+               </div>
+   
+               <div class="center">   
+                  <div class="progressbar">
+                     <div id="fill" class="fill" style="width: 0%;"></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            <div class="footer-cont">
+               <p>Archaeology Project v. 0.1.0</p>
+               <p>DefaultCompany</p>
+            </div>
+
+         </div>
+         
+      </div>
+
+      <script src="Template/app.js"> </script>
+      <script type="module">
+         // Import the functions you need from the SDKs you need
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+         import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
+         // TODO: Add SDKs for Firebase products that you want to use
+         // https://firebase.google.com/docs/web/setup#available-libraries
+       
+         // Your web app's Firebase configuration
+         const firebaseConfig = {
+           apiKey: "AIzaSyAD3BYBDVN36d4ZCl5II2bT8JcXUFV25_E",
+           authDomain: "archaeology-game.firebaseapp.com",
+           databaseURL: "https://archaeology-game-default-rtdb.europe-west1.firebasedatabase.app",
+           projectId: "archaeology-game",
+           storageBucket: "archaeology-game.appspot.com",
+           messagingSenderId: "552097029611",
+           appId: "1:552097029611:web:331a52ad0179bc17e2cdae"
+         };
+       
+         // Initialize Firebase
+         const app = initializeApp(firebaseConfig);
+         const db = getDatabase(app);
+         window.db = db;
+         window.dbRef = ref;
+         window.dbSet = set;
+         window.dbGet = get;
+         window.dbOnValue = onValue;
+         // window.dbChild = child;
+
+         window.roomCode = 'NA';
+         window.isHost = false;
+         // setTimeout(() => {
+         //    window.dbSet(window.dbRef(db, 'rooms/' + '4864c764'), {
+         //       turn_order: 2,
+         //       exchange: '12,12:A',
+         //    });
+         //    console.log("TimeoutFinished");
+         // }, 3000);
+      </script>
+
+   </body>
+</html>
