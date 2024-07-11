@@ -42,7 +42,7 @@
 
     function onProgress(progress) {
         loaderFill.style.width = progress * 100 + "%";
-        document.getElementById('finishing-message').innerText = "Game Loading: " + String(progress * 100) + "%";
+        document.getElementById('finishing-message').innerText = "Game Loading: " + String(Math.floor(progress * 100)) + "%";
     }
 
     function onComplete(unityInstance) {
