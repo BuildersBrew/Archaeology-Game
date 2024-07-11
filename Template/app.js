@@ -8,7 +8,7 @@
         frameworkUrl: buildUrl + "/WebGL.framework.js",
         codeUrl: buildUrl + "/WebGL.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
+        companyName: "Builders Brew LTD",
         productName: "Archaeology Project",
         productVersion: "0.1.0",
     };
@@ -42,11 +42,22 @@
 
     function onProgress(progress) {
         loaderFill.style.width = progress * 100 + "%";
+        document.getElementById('finishing-message').innerText = "Game Loading: " + String(progress * 100) + "%";
     }
 
     function onComplete(unityInstance) {
         window.unityInstance = unityInstance;
-        loader.remove();
+        let loadingPrompts = [
+            "Gearing up",
+            "Putting on saftey equipment",
+            "Putting on my hard hat",
+        ];
+        document.getElementById('finishing-message').innerText = loadingPrompts[Math.floor(Math.random() * loadingPrompts.length)] + "...";
+        window.rmvLoader = () => {
+            loader.remove();
+            document.getElementById('canvas-cover').style.display = "none";
+        }
+        //loader.remove();
     }
     var resizeTimeOut;
     function onWindowResize() {

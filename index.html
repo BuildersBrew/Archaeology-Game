@@ -15,6 +15,53 @@
       <!-- Unity Container -->
       <a class="download-button" id="download"></a>
 
+      <div class="mobile-visitor">
+         Please Visit on Desktop
+      </div>
+      
+      <div class="terms-modal-container" id="terms-modal-id">
+         <div class="terms-center">
+            <div class="terms-modal">
+               <h2>Data collection and use</h2>
+               <div class="terms-scroll">
+                  <p>By playing you agree to... <br><br> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                  <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+               </div>
+            </div>
+            <div class="terms-buttons-cont">
+               <div class="terms-decline-button" id="decline-id">
+                  Decline
+               </div>
+               <div class="terms-accept-button" id="accept-id">
+                  Accept
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         window.addEventListener("load", (event) => {
+            var a_btn = document.getElementById('accept-id');
+            a_btn.addEventListener('click', () => dataCollectionDecided(true));
+            var d_btn = document.getElementById('decline-id');
+            d_btn.addEventListener('click', () => dataCollectionDecided(false));
+            
+            if(window.tosDecision != 0) dataCollectionDecided(window.tosDecision == 1);
+
+            function dataCollectionDecided(accepted) {
+               var terms_modal = document.getElementById('terms-modal-id');
+               terms_modal.style.display = "none";
+               window.tosDecision = accepted ? 1 : 2; // Yes, No
+
+               if(window.unityIsLoaded == true){
+                  window.unityInstance.SendMessage("_ServerCommunication","ReceiveToS",String(window.tosDecision)); // ToS Confirmed before load
+               }
+            }
+            terms_modal.style.display = "none";
+         });
+      </script>
+
+      <div id="canvas-cover"></div>
+
       <div id="main-container" class="fill-window">
 
          <div id="unity-container">
@@ -26,7 +73,8 @@
          <div id="loader" class="loader">
             <div class="container">
                <div class="center">
-                  <img src="Template/logo.png" class="logo" />
+                  <!-- <img src="Template/logo.png" class="logo" /> -->
+                  <img src="Template/T_BuildersBrewLogoOnlyAccented.png" class="logo" />
                </div>
    
                <div class="center">   
@@ -34,12 +82,13 @@
                      <div id="fill" class="fill" style="width: 0%;"></div>
                   </div>
                </div>
+               <div id="finishing-message"></div>
             </div>
             
             
             <div class="footer-cont">
                <p>Archaeology Project v. 0.1.0</p>
-               <p>DefaultCompany</p>
+               <p>Builders Brew LTD</p>
             </div>
 
          </div>
@@ -65,6 +114,8 @@
             appId: "1:494193417140:web:86f839ad63d179aa6bb0e1"
          };
 
+         window.unityIsLoaded = false;
+         window.tosDecision = 1; // 0
        
          // Initialize Firebase
          const app = initializeApp(firebaseConfig);

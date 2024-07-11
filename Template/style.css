@@ -5,7 +5,7 @@ body{
    max-height: 100%;
    height: 100%;
    overflow: hidden;
-   background-color: #231F20;
+   background-color: #FEEFD1 !important;
    background-color: #231F20;
    background-position: center top;
    /*background-size: cover;*/
@@ -17,10 +17,10 @@ body{
 }
 
 body.Dark{
-   color:white;
+   color:#331E1C;
 }
 body.Light{
-   color:black;  
+   color:#331E1C;  
 }
 #main-container{
    display: block;
@@ -42,6 +42,14 @@ body.Light{
    margin: 0;
    position: relative;
 }
+#canvas-cover{
+   width: 100vw;
+   height: 100vh;
+   background-color: #FEEFD1 !important;
+   /* background-color: #381e4e !important; */
+   position: fixed;
+   z-index: 1;
+}
 
 .loader{
    width: 100%;
@@ -54,6 +62,8 @@ body.Light{
    right: 0;
    left: 0;
    text-align: center;
+   z-index: 30;
+   background-color: #FEEFD1 !important;
 }
 .container{
    width: 80%;
@@ -72,11 +82,11 @@ body.Light{
 .progressbar{
    padding: 1px;
    left: 0;
-   border: 1px solid #333;
+   border: 1px solid #331E1C;
    border-radius: 10px;
 }
 .Dark .progressbar{
-   border: 1px solid white;
+   border: 1px solid #331E1C;
 }
 .fill{
    height:6px;
@@ -87,7 +97,7 @@ body.Light{
    transition-duration: 1s;
 }
 .Dark .fill{
-   background: white;
+   background: #331E1C;
 }
 .center {
    overflow: hidden;
@@ -104,11 +114,11 @@ body.Light{
 }
 h1{
    padding-bottom: 10px;
-   border-bottom: 1px solid #333;
+   border-bottom: 1px solid #331E1C;
 }
 
 .Dark h1{
-   border-bottom: 1px solid white;
+   border-bottom: 1px solid #331E1C;
 }
 
 .logo-cont, .title-cont{
@@ -164,4 +174,133 @@ span.imgbutton{
    height: 100px;
    z-index: 30;
    /* background-color: rgb(0, 30, 255); */
+}
+.terms-modal-container {
+   display: none !important;
+
+   /* background-color: rgba(255, 0, 0, 0.362); */
+   /* position: fixed; */
+   position: relative;
+   width: 100vw;
+   height: 100vh;
+
+   display: flex;
+	align-items: center;
+	justify-content: center;
+   
+   z-index: 140;
+}
+.terms-center{
+   /* background-color: rgba(255, 0, 0, 0.362); */
+   position: relative;
+   width: 100%;
+   max-width: 800px;
+   height: 100%;
+   display: flex;
+	align-items: end;
+	justify-content: end;
+   
+}
+.terms-modal {
+   position: relative;
+   background-color: #e9d9b6;
+   border-radius: 20px;
+   width: 100%;
+   max-width: 800px;
+   height: 300px;
+   margin-bottom: 130px;
+   padding-left: 20px;
+   /* pointer-events: inherit; */
+}
+.terms-buttons-cont {
+   position: absolute;
+   /* position: relative; */
+   /* background-color: rgba(255, 0, 0, 0.362); */
+   width: 100%;
+   max-width: 800px;
+   height: 300px;
+   margin-bottom: 130px;
+
+   display: flex;
+	align-items: end;
+	justify-content: end;
+   pointer-events: none;
+}
+.terms-accept-button {
+   background-color: #331E1C;
+   width: 125px;
+   height: 40px;
+   border-radius: 20px;
+   color: #FEEFD1;
+
+   display: flex;
+	align-items: center;
+	justify-content: center;
+   margin-right: 10px;
+   margin-bottom: 10px;
+   pointer-events: all;
+}
+.terms-accept-button:hover{
+   background-color: #492b29;
+   cursor: pointer;
+}
+.terms-decline-button {
+   background-color: #FEEFD1;
+   width: 125px;
+   height: 40px;
+   border-radius: 20px;
+   color: #331E1C;
+
+   display: flex;
+	align-items: center;
+	justify-content: center;
+   margin-right: 10px;
+   margin-bottom: 10px;
+   pointer-events: all;
+}
+.terms-decline-button:hover{
+   background-color: #f5ebd7;
+   cursor: pointer;
+}
+.terms-scroll{
+   /* background-color: rgba(255, 0, 0, 0.362); */
+   position: relative;
+   margin-right: 20px;
+   height: 165px;
+   width: calc(100% - 20px);
+   
+   /* overflow-y: scroll; */
+   overflow: auto;
+}
+
+.terms-scroll::-webkit-scrollbar {
+   width: 4px;
+}
+
+.terms-scroll::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.terms-scroll::-webkit-scrollbar-thumb {
+   background-color: #331E1C;
+   outline: 1px solid rgba(112, 128, 144, 0);
+}
+.terms-scroll > p{
+   margin-right: 10px;
+}
+
+.mobile-visitor{
+   background-color: #FEEFD1;
+   position: fixed;
+   width: 100vw;
+   height: 100vh;
+   z-index: 290;
+   display: none;
+}
+
+@media(max-aspect-ratio: 1/1.25){
+   .mobile-visitor{
+      display: grid !important;
+	   place-items: center !important;
+   }  
 }
