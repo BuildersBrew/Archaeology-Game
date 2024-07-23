@@ -47,16 +47,17 @@
             
             if(window.tosDecision != 0) dataCollectionDecided(window.tosDecision == 1);
 
+            var terms_modal = document.getElementById('terms-modal-id');
             function dataCollectionDecided(accepted) {
-               var terms_modal = document.getElementById('terms-modal-id');
-               terms_modal.style.display = "none";
+               
+               if(terms_modal != undefined && terms_modal != null) terms_modal.style.display = "none";
                window.tosDecision = accepted ? 1 : 2; // Yes, No
 
                if(window.unityIsLoaded == true){
                   window.unityInstance.SendMessage("_ServerCommunication","ReceiveToS",String(window.tosDecision)); // ToS Confirmed before load
                }
             }
-            terms_modal.style.display = "none";
+            if(terms_modal != undefined && terms_modal != null) terms_modal.style.display = "none";
          });
       </script>
 
