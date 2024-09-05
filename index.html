@@ -58,7 +58,37 @@
                }
             }
             if(terms_modal != undefined && terms_modal != null) terms_modal.style.display = "none";
+
+            window.addEventListener('resize', () => window.resizeCanvas());
+            window.addEventListener('orientationchange', () => window.resizeCanvas());
          });
+         window.resizeCanvas = function(){
+            return;
+
+            const canv = document.getElementById('unity-canvas');
+            const dims = [window.innerWidth, window.innerHeight];
+            const ratio = dims[0] / dims[1];
+
+            if(ratio < 2.2 && ratio > 1.5){
+               // Fill screen
+               canv.style.height = '100%';
+               canv.style.width = '100%';
+            }else if(ratio <= 1.5){
+               // 4:3 or lower
+               let newHeight = window.innerWidth * 0.5625;
+               canv.style.width = '100%';
+               canv.style.height = String(newHeight) + '%';
+            } else {
+               // Wider
+               canv.style.height = '100%';
+               let newWidth = window.innerHeight * 1.7777;
+               canv.style.width = String(newWidth) + '%';
+            }
+
+            
+
+            //canv.style.width = 
+         };
       </script>
 
       <div id="canvas-cover"></div>
@@ -66,7 +96,7 @@
       <div id="main-container" class="fill-window">
 
          <div id="unity-container">
-            <canvas id="unity-canvas"></canvas>
+            <div style="display: grid; place-items: center;"> <canvas id="unity-canvas"></canvas> </div>
             <div id="toggle_fullscreen" class="button floatbottomLeft fullscreenON" > <span class="imgbutton"></span> </div>
          </div>
 
