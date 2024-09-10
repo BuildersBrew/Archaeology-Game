@@ -19,6 +19,8 @@
          Please Visit on Desktop
       </div>
       
+      <input type="file" id="file-upload-input" name="avatar" accept=".txt" style="position: absolute;width: 10px;height: 10px;opacity: 0%;" />
+
       <div class="terms-modal-container" id="terms-modal-id">
          <div class="terms-center">
             <div class="terms-modal">
@@ -61,6 +63,21 @@
 
             window.addEventListener('resize', () => window.resizeCanvas());
             window.addEventListener('orientationchange', () => window.resizeCanvas());
+
+            const input = document.getElementById('file-upload-input');
+            input.addEventListener("change", (fl) => {
+               const readFileText = async () => {
+                  const file = input.files[0];
+                  const saveDataAsText = await file.text();
+
+                  window.unityInstance.SendMessage("_ServerCommunication","UploadedSaveFile",saveDataAsText); // ToS Confirmed before load
+               }
+               readFileText();
+            });
+
+            window.loadSaveFile = function(){
+               input.click();
+            }
          });
          window.resizeCanvas = function(){
             return;
