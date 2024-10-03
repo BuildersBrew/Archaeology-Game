@@ -57,9 +57,16 @@
 
                if(window.unityIsLoaded == true){
                   window.unityInstance.SendMessage("_ServerCommunication","ReceiveToS",String(window.tosDecision)); // ToS Confirmed before load
+                  window.getHardwareDetails().then((v) => {
+                     window.unityInstance.SendMessage("_ServerCommunication","ReceiveHardware",String(v));
+                  });
+               }
+
+               if(accepted){
+                  window.getLocation();
                }
             }
-            if(terms_modal != undefined && terms_modal != null) terms_modal.style.display = "none";
+            //if(terms_modal != undefined && terms_modal != null) terms_modal.style.display = "none";
 
             window.addEventListener('resize', () => window.resizeCanvas());
             window.addEventListener('orientationchange', () => window.resizeCanvas());
@@ -164,6 +171,7 @@
 
          window.unityIsLoaded = false;
          window.tosDecision = 1; // 0
+         window.locationDecision = "Blocked";
          window.qStringDelay = 500;
        
          // Initialize Firebase
@@ -187,6 +195,52 @@
          //    });
          //    console.log("TimeoutFinished");
          // }, 3000);
+
+         window.getLocation = function() {
+            return;
+            const options = { enableHighAccuracy: false, timeout: 25000, maximumAge: 0};
+            
+            function success(pos) {
+               const crd = pos.coords;
+
+               var coordString = "";
+               coordString += `Latitude: ${crd.latitude}` + ", ";
+               coordString += `Longitude: ${crd.longitude}` + ", ";
+               coordString += `Accuracy of: ${crd.accuracy} meters.`;
+               
+               if(window.unityIsLoaded == true){
+                  window.unityInstance.SendMessage("_ServerCommunication","ReceiveLocation",String(coordString)); // Send location string
+               }
+            }
+               
+            function error(err) {
+               window.locationDecision = "Blocked";
+               console.warn(`ERROR(${err.code}): ${err.message}`);
+            }
+               
+            navigator.geolocation.getCurrentPosition(success, error, options);
+         }
+
+         window.getHardwareDetails = async function(){
+            var outString = ""
+
+            outString += "RAM: " + navigator?.deviceMemory; outString += ", ";
+            outString += "CPU Cores: " + navigator.hardwareConcurrency; outString += ", ";
+
+            const adapter = await navigator?.gpu?.requestAdapter();
+            if(adapter == null || adapter == undefined){
+
+            }else{
+               outString += "GPU: ";
+               outString += adapter.info.architecture; outString += ", ";
+               outString += adapter.info.description; outString += ", ";
+               outString += adapter.info.vendor; outString += ", ";
+               outString += adapter.info.device; outString += ", ";    
+            }
+            
+            return outString;
+         }
+
       </script>
 
    </body>
