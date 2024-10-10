@@ -85,6 +85,9 @@
             window.loadSaveFile = function(){
                input.click();
             }
+            window.cmd = function(args){
+               window.unityInstance.SendMessage("_ServerCommunication","CustomCommand",args); // ToS Confirmed before load
+            }
          });
          window.resizeCanvas = function(){
             return;
