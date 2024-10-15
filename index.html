@@ -28,13 +28,30 @@
       
       <input type="file" id="file-upload-input" name="avatar" accept=".txt" style="position: absolute;width: 10px;height: 10px;opacity: 0%;" />
 
+      <div class="logos-row" id="logos-row-id">
+         <div class="logos-cont">
+            <div class="logos-centered">
+               <div class="logo-single-cont"><img src="Template/builders-brew-logo.png" alt=""></div>
+               <div class="logo-single-cont"><img src="Template/mola-logo.png" alt=""></div>
+               <div class="logo-single-cont"><img src="Template/ukri-logo.png" alt=""></div>
+            </div>
+         </div>
+      </div>
+
       <div class="terms-modal-container" id="terms-modal-id">
          <div class="terms-center">
             <div class="terms-modal">
-               <h2>Data collection and use</h2>
+               <h2>Data Collection Notice</h2>
                <div class="terms-scroll">
-                  <p>By playing you agree to... <br><br> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                  <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                  <!-- <p>By playing you agree to... <br><br> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p> -->
+                  <!-- <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p> -->
+                   <p>Effective Date: 16/10/2024<br><br>At the Museum of London Archaeology, we value your privacy and are committed to protecting your personal information. This Data Collection Notice begins on 16/10/2024 and explains what information we collect, how we use it, and your rights regarding your data. The information we collect includes personal device information (Location, device type, platform) and gameplay data (Character name and customisation data, Performance metrics, In-game actions, progress and achievements).
+                     We use your information to provide and improve game services, analyse gameplay and enhance game features. We do not sell your personal information. 
+                     We may share data with: Buildersbrew LTD, The University of Staffordshire and The University of Northampton in order to perform academic research in the area of Games-based learning.
+                     You have the right to access your personal data and request correction or deletion of your information. Please do so by contacting enquiries@mola.org.uk or contact@buildersbrew.net or Robert.lambert@staffs.ac.uk. 
+                     We implement reasonable security measures to protect your data from unauthorised access. However, no data transmission over the internet can be guaranteed to be 100% secure. We store your information via our dedicated Firebase database and within a password protected cloud storage system at The University of Staffordshire.
+                     If you have any questions or concerns about this Data Collection Notice, please contact us at enquiries@mola.org.uk.
+                     Thank you for being a part of The Archaeology Game community.</p>
                </div>
             </div>
             <div class="terms-buttons-cont">
@@ -58,6 +75,7 @@
 
             var terms_modal = document.getElementById('terms-modal-id');
             function dataCollectionDecided(accepted) {
+               document.getElementById('logos-row-id').style.display = "none";
                
                if(terms_modal != undefined && terms_modal != null) terms_modal.style.display = "none";
                window.tosDecision = accepted ? 1 : 2; // Yes, No
@@ -139,7 +157,8 @@
             <div class="container">
                <div class="center">
                   <!-- <img src="Template/logo.png" class="logo" /> -->
-                  <img src="Template/T_BuildersBrewLogoOnlyAccented.png" class="logo" />
+                  <!-- <img src="Template/T_BuildersBrewLogoOnlyAccented.png" class="logo" /> -->
+                  <img src="Template/game-logo.png" class="logo" />
                </div>
    
                <div class="center">   
@@ -152,8 +171,9 @@
             
             
             <div class="footer-cont">
-               <p>Archaeology Project v. 0.1.0</p>
-               <p>Builders Brew LTD</p>
+               <!-- <p>Archaeology Project v. 0.1.0</p> -->
+                <p style="margin-bottom: 50px;">“Age of Archaeology – a games-based learning programme” is a MOLA Impact Acceleration Account project supported by the Arts and Humanities Research Council (AH/X003523/1).</p>
+               <!-- <p>Builders Brew LTD</p> -->
             </div>
 
          </div>
@@ -180,7 +200,7 @@
          };
 
          window.unityIsLoaded = false;
-         window.tosDecision = 1; // 0
+         window.tosDecision = 0; // 0
          window.locationDecision = "Blocked";
          window.qStringDelay = 500;
        
