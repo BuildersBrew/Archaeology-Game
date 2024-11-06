@@ -9,7 +9,7 @@
         codeUrl: buildUrl + "/WebGL.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Builders Brew LTD",
-        productName: "Archaeology Project",
+        productName: "Archaeology Game",
         productVersion: "0.1.0",
     };
 
